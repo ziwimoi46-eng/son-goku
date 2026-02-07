@@ -51,12 +51,45 @@ const MENU_IMAGES = [
 ];
 
 const GALLERY_IMAGES = [
-  { src: "/images/food_burger.jpg", alt: "Signature Burger", span: "col-span-1 md:col-span-2 row-span-2" },
+  { src: "/images/food_burger_ad.jpg", alt: "Signature Zinger Burger", span: "col-span-1 md:col-span-2 row-span-2" },
   { src: "/images/food_fried_chicken.jpg", alt: "Crispy Fried Chicken", span: "col-span-1 row-span-1" },
-  { src: "/images/food_kulcha.jpg", alt: "Fresh Kulcha", span: "col-span-1 row-span-1" },
-  { src: "/images/food_sandwich.jpg", alt: "Grilled Sandwich", span: "col-span-1 row-span-1" },
-  { src: "/images/food_calzone.jpg", alt: "Cheesy Calzone", span: "col-span-1 row-span-1" },
+  { src: "/images/food_fries_real.jpg", alt: "Peri Peri Fries", span: "col-span-1 row-span-1" },
+  { src: "/images/brand_fried_chicken.jpg", alt: "Our Special Fried Chicken", span: "col-span-1 row-span-1" },
+  { src: "/images/food_burger.jpg", alt: "Zinger Burger", span: "col-span-1 row-span-1" },
   { src: "/images/interior_seating.jpg", alt: "Restaurant Seating", span: "col-span-1 md:col-span-2 row-span-1" },
+];
+
+const REVIEWS = [
+  {
+    name: "Yaser Khan",
+    rating: 5,
+    text: "Love this place, most tasty fried chicken you can find right now in Aurangabad. The quality and taste are unmatched.",
+    date: "3 years ago"
+  },
+  {
+    name: "Sumaiya Siddiqui",
+    rating: 5,
+    text: "Beautiful crispy chicken and fries. The best in Aurangabad. Very clean and hygienic place for family.",
+    date: "1 year ago"
+  },
+  {
+    name: "Majroddin Sayyad",
+    rating: 5,
+    text: "A delightful treat for chicken lover. This place is really very awesome. Value for money and great service.",
+    date: "1 year ago"
+  },
+  {
+    name: "Ahmad Raza Chishti",
+    rating: 5,
+    text: "Best food in Overall Aurangabad. Must visit here anytime. The grilled chicken is a must-try!",
+    date: "1 year ago"
+  },
+  {
+    name: "Sameer Ali Sayyed",
+    rating: 5,
+    text: "Tried Spicy chicken kulcha and makhani chicken kulcha. Both were impressively well. Creamy mayonnaise and honey chilli sauce.",
+    date: "2 years ago"
+  }
 ];
 
 // --- Components ---
@@ -295,6 +328,43 @@ function MenuSection({ onOpenLightbox }: { onOpenLightbox: (src: string) => void
                 </div>
               </div>
               <h3 className="text-xl font-bold mt-4 text-center group-hover:text-primary transition-colors">{item.alt}</h3>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Testimonials() {
+  return (
+    <section className="py-20 bg-gray-50 overflow-hidden">
+      <div className="container-custom">
+        <div className="text-center mb-16">
+          <span className="section-subtitle">Testimonials</span>
+          <h2 className="section-title text-black">WHAT OUR <span className="text-primary">CUSTOMERS SAY</span></h2>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {REVIEWS.map((review, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col h-full"
+            >
+              <div className="flex gap-1 mb-4">
+                {[...Array(review.rating)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 fill-primary text-primary" />
+                ))}
+              </div>
+              <p className="text-gray-600 italic mb-6 flex-grow">"{review.text}"</p>
+              <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-50">
+                <span className="font-bold text-black">{review.name}</span>
+                <span className="text-xs text-gray-400 uppercase">{review.date}</span>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -628,6 +698,7 @@ export default function Home() {
       <About />
       <MenuSection onOpenLightbox={setLightboxSrc} />
       <Gallery onOpenLightbox={setLightboxSrc} />
+      <Testimonials />
       <BookingSection />
       <ContactFooter />
       
