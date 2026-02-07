@@ -272,13 +272,13 @@ function About() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative"
+            className="relative h-full"
           >
             <div className="absolute inset-0 bg-primary/10 transform rotate-3 rounded-2xl" />
             <img 
               src="/images/interior_wall.jpg" 
               alt="Restaurant Interior" 
-              className="relative rounded-2xl shadow-2xl w-full object-cover h-[600px]"
+              className="relative rounded-2xl shadow-2xl w-full object-cover h-[400px] lg:h-full lg:min-h-[600px]"
             />
           </motion.div>
         </div>
@@ -345,7 +345,7 @@ function Testimonials() {
           <h2 className="section-title text-black">WHAT OUR <span className="text-primary">CUSTOMERS SAY</span></h2>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
           {REVIEWS.map((review, idx) => (
             <motion.div
               key={idx}
@@ -382,7 +382,7 @@ function Gallery({ onOpenLightbox }: { onOpenLightbox: (src: string) => void }) 
           <h2 className="section-title text-black">FOOD <span className="text-primary">GALLERY</span></h2>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 auto-rows-[200px] md:auto-rows-[250px]">
           {GALLERY_IMAGES.map((img, idx) => (
             <motion.div
               key={idx}
@@ -462,7 +462,7 @@ function BookingSection() {
             </div>
           </div>
 
-          <div className="bg-white p-8 md:p-10 rounded-3xl shadow-2xl">
+          <div className="bg-white p-8 md:p-12 rounded-3xl shadow-2xl lg:sticky lg:top-24">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
